@@ -6,7 +6,7 @@ const Projects = () => {
         <div className={styles.projectDiv}>
           <h1 className="pb-1 text-xl">API generated Animelist</h1>
           <img src="/AnimePic.jpg" className={styles.animePic}/>
-          <p className="pb-1 text-sm pt-1">Javascript/Tailwindcss/ReactJs/Framer-Motion</p>
+          <p className="pb-1 text-sm pt-1 sm:text-xs">Javascript/Tailwindcss/<br/>ReactJs/Framer-Motion</p>
           <div className={styles.btnDiv} >
             <Link href="https://github.com/Alexwbd/Animelist" target="_blank" className={styles.gitHubBtn} >
                 <svg
