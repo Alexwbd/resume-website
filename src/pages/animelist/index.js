@@ -127,7 +127,7 @@ const exit =() =>{
                 
                 sm:-right-1 ">&#10005;</button>
               </div>
-              <p className="   sm:p-0 sm:break-all">{selectedAnime.attributes.description}</p>
+              <p className="   sm:p-0 sm:break-all px-5">{selectedAnime.attributes.description}</p>
             </motion.div>
           </div>
         )}
