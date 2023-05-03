@@ -1,6 +1,6 @@
 import Navbar from './Navbar';
 import { motion} from 'framer-motion'
-import { React } from 'react'
+import { React, useEffect, useState } from 'react'
 import '@/styles/Home.module.css'
 const Layout = ({children, showHeader}) => {
   const duration=0.35
@@ -24,10 +24,15 @@ const Layout = ({children, showHeader}) => {
       transition: {duration: duration}
     }
   }
+  const [isMounted, setIsMounted] = useState(false)
 
+  useEffect(()=>{
+    setIsMounted(true)
+  },[])
+  
   return<>
-  <Navbar/>
-        {showHeader &&<Navbar />   }
+        {isMounted && <Navbar/>}
+        {showHeader && isMounted &&<Navbar  />   }
             <motion.div  variants={variants} initial="initial" animate="enter" exit="exit">
               {children}
             </motion.div>

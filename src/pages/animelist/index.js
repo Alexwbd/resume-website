@@ -3,19 +3,19 @@ import axios from 'axios';
 import {motion} from 'framer-motion'
 import Layout from '../components/Layout';
 
-// const isEqual =(prevProps, nextProps) =>{
-//    if (prevProps.showHeader === prevProps.showHeader){
-//       return true
-//    }else if (prevProps.showHeader === nextProps.showHeader)
-//    {
-//       return false
-//    }
-// }
-const AnimeList = ({showHeader}) => {
-
+ const isEqual =(prevProps, nextProps) =>{
+   if (prevProps.showHeader === prevProps.showHeader){
+     return true
+   }else if (prevProps.showHeader === nextProps.showHeader)
+  {
+     return false
+   }
+ }
+const AnimeList = () => {
   const [isHidden, setIsHidden] = React.useState(false)
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isPageLoaded, setIsPageLoaded] = useState(false)
 
   const [selectedAnime, setSelectedAnime] = React.useState(null)
   const blurr = {
@@ -26,6 +26,7 @@ const AnimeList = ({showHeader}) => {
       const result = await axios.get('https://kitsu.io/api/edge/anime');
       setData(result.data.data);
       setIsLoading(false);
+      setIsPageLoaded(true)
     };
     fetchData();
   }, []);
@@ -37,7 +38,11 @@ const exit =() =>{
   setIsHidden(prevState => !prevState)
   setSelectedAnime(null)
 }
-  return <Layout showHeader={true}>
+console.log(data)
+
+  return (
+    <>
+    {isPageLoaded && ( <Layout showHeader={false}>
      {isLoading ? (
         <div>Loading...</div>
       ) : (
@@ -114,7 +119,7 @@ const exit =() =>{
             flex-col
             items-center
             absolute
-            top-0
+             top-0
              sm:pt-2" >
               <h1 className="text-3xl sm:ml-3 sm:text-xl "> {selectedAnime.attributes.canonicalTitle}</h1>
               <div className="relative flex flex-col items-center">
@@ -134,8 +139,9 @@ const exit =() =>{
       </div>
     
       )}
-  </Layout>
-}
+  </Layout>)}
+  </>
+)}
 
 // export const getStaticProps = async () => {
 //   const data = await Axios.get("https://kitsu.io/api/edge/anime");
@@ -146,5 +152,5 @@ const exit =() =>{
 //   }
 // }
 
-// export default React.memo(AnimeList, isEqual);
-export default AnimeList;
+ export default React.memo(AnimeList, isEqual);
+// export default AnimeList;
